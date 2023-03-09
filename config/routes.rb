@@ -79,9 +79,6 @@ Rails.application.routes.draw do
 
   # Routes for the User account:
 
-  # VIEW ALL
-  get("/users", { :controller => "user_authentication", :action => "index" })
-
   # SIGN UP FORM
   get("/user_sign_up", { :controller => "user_authentication", :action => "sign_up_form" })
   # CREATE RECORD
@@ -104,6 +101,15 @@ Rails.application.routes.draw do
 
   # SIGN OUT
   get("/user_sign_out", { :controller => "user_authentication", :action => "destroy_cookies" })
+
+  #------------------------------
+
+  # Routes for the User resource:
+
+  # VIEW ALL
+  get("/users", { :controller => "users", :action => "index" })
+
+  get("/users/:path_id", { :controller => "users", :action => "show_profile" })
 
   #------------------------------
 
