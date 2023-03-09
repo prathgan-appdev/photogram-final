@@ -46,6 +46,18 @@
         <% end %>
 			</td>
 
+			<% if session.fetch(:user_id).present? %>
+				<td>
+					<form action="/insert_follow_request" method="post">
+						<input type="hidden" name="query_recipient_id" value="<%= a_user.id %>">
+
+						<button>
+							Follow
+						</button>
+					</form>
+				</td>
+			<% end %>
+
 			<td>
 				<a href="/users/<%= a_user.username %>">
 					Show details
