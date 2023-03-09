@@ -8,13 +8,17 @@ class PhotosController < ApplicationController
   end
 
   def show
-    the_id = params.fetch("path_id")
+    if not session.fetch(:user_id).present?
+      redirect_to("/", { :alert => "You have to sign in first." })
+    else
+      the_id = params.fetch("path_id")
 
-    matching_photos = Photo.where({ :id => the_id })
+      matching_photos = Photo.where({ :id => the_id })
 
-    @the_photo = matching_photos.at(0)
+      @the_photo = matching_photos.at(0)
 
-    render({ :template => "photos/show.html.erb" })
+      render({ :template => "photos/show.html.erb" })
+    end
   end
 
   def create
@@ -45,7 +49,7 @@ class PhotosController < ApplicationController
 
     if the_photo.valid?
       the_photo.save
-      redirect_to("/photos/#{the_photo.id}", { :notice => "Photo updated successfully."} )
+      redirect_to("/photos/#{the_photo.id}", { :notice => "Photo updated successfully." })
     else
       redirect_to("/photos/#{the_photo.id}", { :alert => the_photo.errors.full_messages.to_sentence })
     end
@@ -57,6 +61,6 @@ class PhotosController < ApplicationController
 
     the_photo.destroy
 
-    redirect_to("/photos", { :notice => "Photo deleted successfully."} )
+    redirect_to("/photos", { :notice => "Photo deleted successfully." })
   end
 end
