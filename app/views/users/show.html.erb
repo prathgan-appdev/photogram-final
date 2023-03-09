@@ -1,1 +1,265 @@
-hi
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Target Photogram Final</title>
+    <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="XiLdUEu2kq85GnJQL3paKyzrS0sHFopVYAz39FV9IWGfo/H4xPgMGdHqSWYWCyiR5F5Tyl2Deb+fm7sXlB4f8w==" />
+
+    <!-- Expand the number of characters we can use in the document beyond basic ASCII 🎉 -->
+    <meta charset="utf-8">
+
+    <!-- Make it responsive to small screens -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+
+    <link rel="stylesheet" media="all" href="/assets/application-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css" />
+  </head>
+
+  <body>
+
+
+
+    <h1><%= @the_user.username%></h1>
+
+<dl>
+  <dt>Private</dt>
+  <dd><%= @the_user.private %></dd>
+
+  <dt>Followers</dt>
+  <dd>
+    <%= @num_followers %>
+
+
+      <div>
+				<% if not @is_following %>
+          <form action="/insert_follow_request" method="post">
+            <input type="hidden" name="query_recipient_id" value="<%= @the_user.id %>">
+
+            <button>
+              Follow
+            </button>
+          </form>
+				<% else %>
+					<a href="/delete_follow_request/<%= @the_user.id%>">
+						Unfollow
+					</a>
+				<% end %>
+    </div>
+
+  </dd>
+
+  <dt>Following</dt>
+  <dd>12</dd>
+
+</dl>
+
+<nav>
+  <ul>
+    <li>
+      <a href="/users/bob">Profile</a>
+    </li>
+    <li>
+      <a href="/users/bob/liked_photos">Liked photos</a>
+    </li>
+    <li>
+      <a href="/users/bob/feed">Feed</a>
+    </li>
+    <li>
+      <a href="/users/bob/discover">Discover</a>
+    </li>
+  </ul>
+</nav>
+
+<h2>Own photos (6)</h2>
+
+<table border="1">
+  <tr>
+    <th>
+      Image
+    </th>
+
+    <th>
+      Owner
+    </th>
+
+    <th>
+      Caption
+    </th>
+
+    <th>
+      Posted
+    </th>
+
+    <th>
+      Likes
+    </th>
+
+    <th></th>
+  </tr>
+
+  <tr>
+    <td>
+      <img src="https://robohash.org/atharumblanditiis">
+    </td>
+
+    <td>
+      bob
+    </td>
+
+    <td>
+      Fear cuts deeper than swords.
+    </td>
+
+    <td>
+      over 5 years ago
+    </td>
+
+    <td>
+      6
+    </td>
+
+    <td>
+      <a href="/photos/747">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="https://robohash.org/assumendatemporibusodio">
+    </td>
+
+    <td>
+      bob
+    </td>
+
+    <td>
+      Power is a curious thing. Who lives, Who dies. Power resides where men believe it resides. It is a trick, A shadow on the wall.
+    </td>
+
+    <td>
+      over 5 years ago
+    </td>
+
+    <td>
+      6
+    </td>
+
+    <td>
+      <a href="/photos/749">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="https://robohash.org/voluptatemquoqui">
+    </td>
+
+    <td>
+      bob
+    </td>
+
+    <td>
+      Fear cuts deeper than swords.
+    </td>
+
+    <td>
+      over 6 years ago
+    </td>
+
+    <td>
+      5
+    </td>
+
+    <td>
+      <a href="/photos/750">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="https://robohash.org/utadesse">
+    </td>
+
+    <td>
+      bob
+    </td>
+
+    <td>
+      Fear cuts deeper than swords.
+    </td>
+
+    <td>
+      over 4 years ago
+    </td>
+
+    <td>
+      4
+    </td>
+
+    <td>
+      <a href="/photos/745">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="https://robohash.org/harummagnamaliquam">
+    </td>
+
+    <td>
+      bob
+    </td>
+
+    <td>
+      Knowledge could be more valuable than gold, more deadly than a dagger.
+    </td>
+
+    <td>
+      over 6 years ago
+    </td>
+
+    <td>
+      2
+    </td>
+
+    <td>
+      <a href="/photos/746">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="https://robohash.org/sitexercitationemullam">
+    </td>
+
+    <td>
+      bob
+    </td>
+
+    <td>
+      Summer will end soon enough, and childhood as well.
+    </td>
+
+    <td>
+      almost 6 years ago
+    </td>
+
+    <td>
+      0
+    </td>
+
+    <td>
+      <a href="/photos/748">
+        Show details
+      </a>
+    </td>
+  </tr>
+</table>
+
+  </body>
+</html>
