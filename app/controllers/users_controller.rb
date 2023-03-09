@@ -25,6 +25,7 @@ class UsersController < ApplicationController
       @num_followers = approved_requests.count()
 
       if the_request.present?
+        @request_id = the_request.id
         if the_request.status == "approved"
           @is_following = true
         else
