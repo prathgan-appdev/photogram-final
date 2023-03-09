@@ -56,10 +56,23 @@ class FollowRequestsController < ApplicationController
     the_id = params.fetch("path_id")
     the_follow_request = FollowRequest.where({ :id => the_id }).at(0)
 
-    unfollowed_username = the_follow_request.recipient_id
+    #unfollowed_username = the_follow_request.recipient_id
 
     the_follow_request.destroy
 
     redirect_to("/users", { :notice => "Follow request deleted successfully." })
+  end
+
+  def destroy_from_profile
+    the_id = params.fetch("path_id")
+    the_follow_request = FollowRequest.where({ :id => the_id }).at(0)
+
+    unfollowed_user_id = the_follow_request.recipient_id
+    unfollowed_user = User.where({ :id => unfollowed_user_id }).at(0)
+    unfollowed_username = unfollowed_user.username
+
+    the_follow_request.destroy
+
+    redirect_to("/users/#{unfollowed_username}")
   end
 end
