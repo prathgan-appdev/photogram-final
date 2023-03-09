@@ -3,6 +3,10 @@ class UserAuthenticationController < ApplicationController
   # skip_before_action(:force_user_sign_in, { :only => [:sign_up_form, :create, :sign_in_form, :create_cookie] })
 
   def index
+    matching_users = User.all
+
+    @list_of_users = matching_users.order({ :created_at => :desc })
+
     render({ :template => "user_authentication/index.html.erb" })
   end
 
