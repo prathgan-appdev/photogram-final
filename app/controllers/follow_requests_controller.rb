@@ -25,7 +25,7 @@ class FollowRequestsController < ApplicationController
 
     recipient_user = User.where({ :id => the_follow_request.recipient_id }).at(0)
     if not recipient_user.private?
-      the_follow_request.status = "approved"
+      the_follow_request.status = "accepted"
     end
 
     if the_follow_request.valid?

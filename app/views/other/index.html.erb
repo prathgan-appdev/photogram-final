@@ -43,7 +43,7 @@
 			%>
 
 			<% if the_request.present? # if requested this user %>
-				<% if the_request.status == "approved" # if follow approved %> 
+				<% if the_request.status == "accepted" # if follow approved %> 
 					<tr>
 						<td>
 							<%= a_user.username %>

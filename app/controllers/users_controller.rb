@@ -21,12 +21,15 @@ class UsersController < ApplicationController
       matching_requests = follow_requests.where({ :sender_id => session.fetch(:user_id) })
       the_request = matching_requests.at(0)
 
-      approved_requests = follow_requests.where({ :status => "approved" })
+      approved_requests = follow_requests.where({ :status => "accepted" })
       @num_followers = approved_requests.count()
+
+      approved_follows = @the_user.sent_follow_requests.where({ :status => "accepted" })
+      @num_following = approved_follows.count()
 
       if the_request.present?
         @request_id = the_request.id
-        if the_request.status == "approved"
+        if the_request.status == "accepted"
           @is_following = true
         else
           @is_following = false
@@ -35,7 +38,7 @@ class UsersController < ApplicationController
 
       if @the_user.private?
         if the_request.present?
-          if the_request.status == "approved"
+          if the_request.status == "accepted"
             render({ :template => "users/show.html.erb" })
           else
             redirect_to("/", { :alert => "You're not authorized for that." })
