@@ -48,13 +48,33 @@
 
 			<% if session.fetch(:user_id).present? %>
 				<td>
-					<form action="/insert_follow_request" method="post">
-						<input type="hidden" name="query_recipient_id" value="<%= a_user.id %>">
+					<%
+					follow_requests = a_user.received_follow_requests
+					matching_requests = follow_requests.where({ :sender_id => session.fetch(:user_id) })
+					the_request = matching_requests.at(0)
+					%>
 
-						<button>
-							Follow
-						</button>
-					</form>
+					<% if the_request.present? %>
+						<% if the_request.status == "approved" %>
+							<a href="/delete_follow_request/<%= a_user.id%>">
+								Unfollow
+							</a>
+						<% else %>
+							Request sent.
+
+							<a href="/delete_follow_request/2408">
+								Cancel
+							</a>
+						<% end %>
+					<% else %>
+						<form action="/insert_follow_request" method="post">
+							<input type="hidden" name="query_recipient_id" value="<%= a_user.id %>">
+
+							<button>
+								Follow
+							</button>
+						</form>
+					<% end %>
 				</td>
 			<% end %>
 
